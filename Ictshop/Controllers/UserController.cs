@@ -8,6 +8,7 @@ namespace Ictshop.Controllers
 {
     public class UserController : Controller
     {
+//sign up
         Qlbanhang db = new Qlbanhang();
         // ĐĂNG KÝ
         public ActionResult Dangky()
