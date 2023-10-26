@@ -8,20 +8,11 @@ namespace Ictshop.Controllers
 {
     public class UserController : Controller
     {
+//si
 //sign in
-//sign in
-        Qlbanhang db = new Qlbanhang();
-        // ĐĂNG KÝ
-        public ActionResult Dangky()
-        {
-            return View();
-        }
 
-        // ĐĂNG KÝ PHƯƠNG THỨC POST
-        [HttpPost]
-        public ActionResult Dangky(Nguoidung nguoidung)
-        {
-            try
+
+     
             {
                 // Thêm người dùng  mới
                 db.Nguoidungs.Add(nguoidung);
