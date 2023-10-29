@@ -13,17 +13,17 @@ namespace Ictshop.Controllers
         // GET: GioHang
 
         //Lấy giỏ hàng 
-        // public List<GioHang> LayGioHang()
-        // {
-        //     List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
-        //     if (lstGioHang == null)
-        //     {
-        //         //Nếu giỏ hàng chưa tồn tại thì mình tiến hành khởi tao list giỏ hàng (sessionGioHang)
-        //         lstGioHang = new List<GioHang>();
-        //         Session["GioHang"] = lstGioHang;
-        //     }
-        //     return lstGioHang;
-        // }
+        public List<GioHang> LayGioHang()
+        {
+            List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
+            if (lstGioHang == null)
+            {
+                //Nếu giỏ hàng chưa tồn tại thì mình tiến hành khởi tao list giỏ hàng (sessionGioHang)
+                lstGioHang = new List<GioHang>();
+                Session["GioHang"] = lstGioHang;
+            }
+            return lstGioHang;
+        }
         //Thêm giỏ hàng
         public ActionResult ThemGioHang(int iMasp, string strURL)
         {
