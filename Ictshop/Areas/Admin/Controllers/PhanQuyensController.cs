@@ -20,76 +20,7 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(db.PhanQuyens.ToList());
         }
 
-        // GET: Admin/PhanQuyens/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PhanQuyen phanQuyen = db.PhanQuyens.Find(id);
-            if (phanQuyen == null)
-            {
-                return HttpNotFound();
-            }
-            return View(phanQuyen);
-        }
-
-        // GET: Admin/PhanQuyens/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Admin/PhanQuyens/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDQuyen,TenQuyen")] PhanQuyen phanQuyen)
-        {
-            if (ModelState.IsValid)
-            {
-                db.PhanQuyens.Add(phanQuyen);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(phanQuyen);
-        }
-
-        // GET: Admin/PhanQuyens/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PhanQuyen phanQuyen = db.PhanQuyens.Find(id);
-            if (phanQuyen == null)
-            {
-                return HttpNotFound();
-            }
-            return View(phanQuyen);
-        }
-
-        // POST: Admin/PhanQuyens/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDQuyen,TenQuyen")] PhanQuyen phanQuyen)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(phanQuyen).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(phanQuyen);
-        }
-
-        // GET: Admin/PhanQuyens/Delete/5
+        
         public ActionResult Delete(int? id)
         {
             if (id == null)
