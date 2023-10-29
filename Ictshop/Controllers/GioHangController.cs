@@ -11,24 +11,24 @@ namespace Ictshop.Controllers
     {
         Qlbanhang db = new Qlbanhang();
         // GET: GioHang
-        
+
         //Lấy giỏ hàng 
-        public List<GioHang> LayGioHang()
-        {
-            List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
-            if (lstGioHang == null)
-            {
-                //Nếu giỏ hàng chưa tồn tại thì mình tiến hành khởi tao list giỏ hàng (sessionGioHang)
-                lstGioHang = new List<GioHang>();
-                Session["GioHang"] = lstGioHang;
-            }
-            return lstGioHang;
-        }
+        // public List<GioHang> LayGioHang()
+        // {
+        //     List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
+        //     if (lstGioHang == null)
+        //     {
+        //         //Nếu giỏ hàng chưa tồn tại thì mình tiến hành khởi tao list giỏ hàng (sessionGioHang)
+        //         lstGioHang = new List<GioHang>();
+        //         Session["GioHang"] = lstGioHang;
+        //     }
+        //     return lstGioHang;
+        // }
         //Thêm giỏ hàng
         public ActionResult ThemGioHang(int iMasp, string strURL)
         {
             Sanpham sp = db.Sanphams.SingleOrDefault(n => n.Masp == iMasp);
-            if ( sp == null)
+            if (sp == null)
             {
                 Response.StatusCode = 404;
                 return null;
@@ -54,7 +54,7 @@ namespace Ictshop.Controllers
         public ActionResult CapNhatGioHang(int iMaSP, FormCollection f)
         {
             //Kiểm tra masp
-            Sanpham sp = db.Sanphams.SingleOrDefault(n => n.Masp== iMaSP);
+            Sanpham sp = db.Sanphams.SingleOrDefault(n => n.Masp == iMaSP);
             //Nếu get sai masp thì sẽ trả về trang lỗi 404
             if (sp == null)
             {
@@ -77,7 +77,7 @@ namespace Ictshop.Controllers
         public ActionResult XoaGioHang(int iMaSP)
         {
             //Kiểm tra masp
-            Sanpham sp = db.Sanphams.SingleOrDefault(n => n.Masp== iMaSP);
+            Sanpham sp = db.Sanphams.SingleOrDefault(n => n.Masp == iMaSP);
             //Nếu get sai masp thì sẽ trả về trang lỗi 404
             if (sp == null)
             {
@@ -183,12 +183,12 @@ namespace Ictshop.Controllers
             foreach (var item in gh)
             {
                 Chitietdonhang ctDH = new Chitietdonhang();
-                decimal thanhtien =  item.iSoLuong * (decimal) item.dDonGia;
+                decimal thanhtien = item.iSoLuong * (decimal)item.dDonGia;
                 ctDH.Madon = ddh.Madon;
                 ctDH.Masp = item.iMasp;
                 ctDH.Soluong = item.iSoLuong;
                 ctDH.Dongia = (decimal)item.dDonGia;
-                ctDH.Thanhtien = (decimal) thanhtien;
+                ctDH.Thanhtien = (decimal)thanhtien;
                 db.Chitietdonhangs.Add(ctDH);
             }
             db.SaveChanges();
