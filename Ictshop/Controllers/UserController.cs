@@ -28,7 +28,16 @@ namespace Ictshop.Controllers
                 // Thêm người dùng  mới
                 db.Nguoidungs.Add(nguoidung);
                 // Lưu lại vào cơ sở dữ liệu
-                db.SaveChanges();
+             
+            }
+        }
+   
+        public ActionResult Dangnhap()
+        {
+            return View();
+
+        }
+   db.SaveChanges();
                 // Nếu dữ liệu đúng thì trả về trang đăng nhập
                 if (ModelState.IsValid)
                     {
@@ -40,15 +49,6 @@ namespace Ictshop.Controllers
             catch
             {
                 return View();
-            }
-        }
-   
-        public ActionResult Dangnhap()
-        {
-            return View();
-
-        }
-
 
         [HttpPost]
         public ActionResult Dangnhap(FormCollection userlog)
