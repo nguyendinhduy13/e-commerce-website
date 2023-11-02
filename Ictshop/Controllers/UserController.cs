@@ -8,14 +8,56 @@ namespace Ictshop.Controllers
 {
     public class UserController : Controller
     {
-//si
 //sign in
-
 
         Qlbanhang db = new Qlbanhang();
         // ĐĂNG KÝ
         public ActionResult Dangky()
-        { "Admin@gmail.com")
+        {
+            return View();
+        }
+
+        // ĐĂNG KÝ PHƯƠNG THỨC POST
+        [HttpPost]
+        public ActionResult Dangky(Nguoidung nguoidung)
+        {
+            try
+            {
+                // Thêm người dùng  mới
+                db.Nguoidungs.Add(nguoidung);
+                // Lưu lại vào cơ sở dữ liệu
+                db.SaveChanges();
+                // Nếu dữ liệu đúng thì trả về trang đăng nhập
+                if (ModelState.IsValid)
+                    {
+                        return RedirectToAction("Dangnhap");
+                    }
+                return View("Dangky");
+                
+            }
+            catch
+            {
+                return View();
+            }
+        }
+   
+        public ActionResult Dangnhap()
+        {
+            return View();
+
+        }
+
+
+        [HttpPost]
+        public ActionResult Dangnhap(FormCollection userlog)
+        {
+            string userMail = userlog["userMail"].ToString();
+            string password = userlog["password"].ToString();
+            var islogin = db.Nguoidungs.SingleOrDefault(x => x.Email.Equals(userMail) && x.Matkhau.Equals(password));
+
+            if (islogin != null)
+                {
+                    if (userMail == "Admin@gmail.com")
                         {
                            Session["use"] = islogin;
                            return RedirectToAction("Index", "Admin/Home");
@@ -32,94 +74,6 @@ namespace Ictshop.Controllers
                     return View("Dangnhap");
                 }
 
-            return View();
-        }
-
-        // ĐĂNG KÝ PHƯƠNG THỨC POST
-        [HttpPost]
-        public ActionResult Dangky(Nguoidung nguoidung)
-        {
-            try
-            {
-                // Thêm người dùng  mới
-                db.Nguoidungs.Add(nguoidung);
-                // Lưu lại vào cơ sở dữ liệu
-                db.SaveChanges();
-                // Nếu dữ liệu đúng thì trả về trang đăng nhập
-                if (ModelState.IsValid)
-                    {
-                        return RedirectToAction("Dangnhap");
-                    }
-                return View("Dangky");
-                
-            }
-            catch
-            {
-                return View();
-            }
-        }
-   
-        public ActionResult Dangnhap()
-        {
-            return View();
-
-        }
-
-
-        [HttpPost]
-        public ActionResult Dangnhap(FormCollection userlog)
-        {
-            string userMail = userlog["userMail"].ToString();
-            string password = userlog["password"].ToString();
-            var islogin = db.Nguoidungs.SingleOrDefault(x => x.Email.Equals(userMail) && x.Matkhau.Equals(password));
-
-            if (islogin != null)
-                {
-                    if (userMail ==
-            return View();
-        }
-
-        // ĐĂNG KÝ PHƯƠNG THỨC POST
-        [HttpPost]
-        public ActionResult Dangky(Nguoidung nguoidung)
-        {
-            try
-            {
-                // Thêm người dùng  mới
-                db.Nguoidungs.Add(nguoidung);
-                // Lưu lại vào cơ sở dữ liệu
-                db.SaveChanges();
-                // Nếu dữ liệu đúng thì trả về trang đăng nhập
-                if (ModelState.IsValid)
-                    {
-                        return RedirectToAction("Dangnhap");
-                    }
-                return View("Dangky");
-                
-            }
-            catch
-            {
-                return View();
-            }
-        }
-   
-        public ActionResult Dangnhap()
-        {
-            return View();
-
-        }
-
-
-        [HttpPost]
-        public ActionResult Dangnhap(FormCollection userlog)
-        {
-            string userMail = userlog["userMail"].ToString();
-            string password = userlog["password"].ToString();
-            var islogin = db.Nguoidungs.SingleOrDefault(x => x.Email.Equals(userMail) && x.Matkhau.Equals(password));
-
-            if (islogin != null)
-                {
-                    if (userMail ==
         }
         public ActionResult DangXuat()
         {
