@@ -34,7 +34,53 @@ namespace Ictshop.Controllers
                     }
                 return View("Dangky");
                 
-            }
+            } if (islogin != null)
+                {
+                    if (userMail == "Admin@gmail.com")
+                        {
+                           Session["use"] = islogin;
+                           return RedirectToAction("Index", "Admin/Home");
+                        }
+                     else
+                       if (islogin != null)
+                {
+                    if (userMail == "Admin@gmail.com")
+                        {
+                           Session["use"] = islogin;
+                           return RedirectToAction("Index", "Admin/Home");
+                        }
+                     else
+                         {
+                
+                {
+                    ViewBag.Fail = "Đăng nhập thất bại";
+                    return View("Dangnhap");
+                }
+
+        }
+        public ActionResult DangXuat()
+        {
+            Session["use"] = null;
+            return RedirectToAction("Index","Home");
+
+        }   {
+                           Session["use"] = islogin;
+                           return RedirectToAction("Index","Home");
+                         }
+                 }
+            else
+                {
+                    ViewBag.Fail = "Đăng nhập thất bại";
+                    return View("Dangnhap");
+                }
+
+        }
+        public ActionResult DangXuat()
+        {
+            Session["use"] = null;
+            return RedirectToAction("Index","Home");
+
+        }
             catch
             {
                 return View();
@@ -55,32 +101,7 @@ namespace Ictshop.Controllers
             string password = userlog["password"].ToString();
             var islogin = db.Nguoidungs.SingleOrDefault(x => x.Email.Equals(userMail) && x.Matkhau.Equals(password));
 
-            if (islogin != null)
-                {
-                    if (userMail == "Admin@gmail.com")
-                        {
-                           Session["use"] = islogin;
-                           return RedirectToAction("Index", "Admin/Home");
-                        }
-                     else
-                         {
-                           Session["use"] = islogin;
-                           return RedirectToAction("Index","Home");
-                         }
-                 }
-            else
-                {
-                    ViewBag.Fail = "Đăng nhập thất bại";
-                    return View("Dangnhap");
-                }
-
-        }
-        public ActionResult DangXuat()
-        {
-            Session["use"] = null;
-            return RedirectToAction("Index","Home");
-
-        }
+           
 
 
     }
