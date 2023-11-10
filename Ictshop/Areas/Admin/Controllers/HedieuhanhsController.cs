@@ -35,6 +35,29 @@ namespace Ictshop.Areas.Admin.Controllers
             return View(hedieuhanh);
         }
 
+        // GET: Admin/Hedieuhanhs/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Admin/Hedieuhanhs/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Mahdh,Tenhdh")] Hedieuhanh hedieuhanh)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Hedieuhanhs.Add(hedieuhanh);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(hedieuhanh);
+        }
+
         // GET: Admin/Hedieuhanhs/Edit/5
         public ActionResult Edit(int? id)
         {
