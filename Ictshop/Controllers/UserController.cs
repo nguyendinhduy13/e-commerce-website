@@ -10,6 +10,15 @@ namespace Ictshop.Controllers
     {
         //sign in
 
+        Qlbanhang db = new Qlbanhang();
+        // ĐĂNG KÝ
+        public ActionResult Dangky()
+        {
+            return View();
+        }
+
+        // ĐĂNG KÝ PHƯƠNG THỨC POST
+        [HttpPost]
         public ActionResult Dangky(Nguoidung nguoidung)
         {
             try
