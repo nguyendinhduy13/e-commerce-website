@@ -8,17 +8,8 @@ namespace Ictshop.Controllers
 {
     public class UserController : Controller
     {
-//sign in
+        //sign in
 
-        Qlbanhang db = new Qlbanhang();
-        // ĐĂNG KÝ
-        public ActionResult Dangky()
-        {
-            return View();
-        }
-
-        // ĐĂNG KÝ PHƯƠNG THỨC POST
-        [HttpPost]
         public ActionResult Dangky(Nguoidung nguoidung)
         {
             try
@@ -29,64 +20,65 @@ namespace Ictshop.Controllers
                 db.SaveChanges();
                 // Nếu dữ liệu đúng thì trả về trang đăng nhập
                 if (ModelState.IsValid)
-                    {
-                        return RedirectToAction("Dangnhap");
-                    }
+                {
+                    return RedirectToAction("Dangnhap");
+                }
                 return View("Dangky");
-                
+
             } if (islogin != null)
+            {
+                if (userMail == "Admin@gmail.com")
+                {
+                    Session["use"] = islogin;
+                    return RedirectToAction("Index", "Admin/Home");
+                }
+                else
+                   if (islogin != null)
                 {
                     if (userMail == "Admin@gmail.com")
+                    {
+                        Session["use"] = islogin;
+                        return RedirectToAction("Index", "Admin/Home");
+                    }
+                    else
+                    {
+
                         {
-                           Session["use"] = islogin;
-                           return RedirectToAction("Index", "Admin/Home");
+                            ViewBag.Fail = "Đăng nhập thất bại";
+                            return View("Dangnhap");
                         }
-                     else
-                       if (islogin != null)
-                {
-                    if (userMail == "Admin@gmail.com")
-                        {
-                           Session["use"] = islogin;
-                           return RedirectToAction("Index", "Admin/Home");
-                        }
-                     else
-                         {
-                
+
+                    }
+                    public ActionResult DangXuat()
+                    {
+                        Session["use"] = null;
+                        return RedirectToAction("Index", "Home");
+
+                    }
+                    {
+                        Session["use"] = islogin;
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                else
                 {
                     ViewBag.Fail = "Đăng nhập thất bại";
                     return View("Dangnhap");
                 }
 
-        }
-        public ActionResult DangXuat()
-        {
-            Session["use"] = null;
-            return RedirectToAction("Index","Home");
+            }
+            public ActionResult DangXuat()
+            {
+                Session["use"] = null;
+                return RedirectToAction("Index", "Home");
 
-        }   {
-                           Session["use"] = islogin;
-                           return RedirectToAction("Index","Home");
-                         }
-                 }
-            else
-                {
-                    ViewBag.Fail = "Đăng nhập thất bại";
-                    return View("Dangnhap");
-                }
-
-        }
-        public ActionResult DangXuat()
-        {
-            Session["use"] = null;
-            return RedirectToAction("Index","Home");
-
-        }
+            }
             catch
             {
                 return View();
             }
         }
-   
+
         public ActionResult Dangnhap()
         {
             return View();
@@ -101,8 +93,8 @@ namespace Ictshop.Controllers
             string password = userlog["password"].ToString();
             var islogin = db.Nguoidungs.SingleOrDefault(x => x.Email.Equals(userMail) && x.Matkhau.Equals(password));
 
-           
 
 
+
+        }
     }
-}
