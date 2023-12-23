@@ -58,16 +58,6 @@ namespace Ictshop.Controllers
                         }
 
                     }
-                    public ActionResult DangXuat()
-                    {
-                        Session["use"] = null;
-                        return RedirectToAction("Index", "Home");
-
-                    }
-                    {
-                        Session["use"] = islogin;
-                        return RedirectToAction("Index", "Home");
-                    }
                 }
                 else
                 {
