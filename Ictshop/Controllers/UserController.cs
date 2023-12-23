@@ -96,4 +96,14 @@ namespace Ictshop.Controllers
 
 
         [HttpPost]
+        public ActionResult Dangnhap(FormCollection userlog)
+        {
+            string userMail = userlog["userMail"].ToString();
+            string password = userlog["password"].ToString();
+            var islogin = db.Nguoidungs.SingleOrDefault(x => x.Email.Equals(userMail) && x.Matkhau.Equals(password));
+
+
+
+
+        }
     }
